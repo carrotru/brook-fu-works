@@ -14,12 +14,23 @@ a{color:inherit;text-decoration:none}
 .wrap{max-width:1100px;margin:0 auto;padding:4rem 2rem}
 .section-label{font-size:.72rem;letter-spacing:.22em;color:var(--rust);text-transform:uppercase;margin-bottom:2rem;border-left:3px solid var(--rust);padding-left:10px}
 
-nav{position:sticky;top:0;z-index:100;background:rgba(250,247,242,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 2rem}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:56px}
-.nav-logo{font-family:'Noto Serif TC',serif;font-weight:700;font-size:1.1rem}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{font-size:.85rem;color:var(--warm-gray);transition:color .2s}
+nav{position:sticky;top:0;z-index:100;background:rgba(250,247,242,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 1.5rem}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:52px;position:relative}
+.nav-logo{font-family:'Noto Serif TC',serif;font-weight:700;font-size:1rem;white-space:nowrap}
+.nav-links{display:flex;gap:1.5rem;list-style:none}
+.nav-links a{font-size:.82rem;color:var(--warm-gray);transition:color .2s;white-space:nowrap}
 .nav-links a:hover{color:var(--rust)}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--charcoal);border-radius:2px;transition:all .25s}
+@media(max-width:600px){
+  .nav-toggle{display:flex}
+  .nav-links{display:none;flex-direction:column;gap:0;position:absolute;top:52px;left:-1.5rem;right:-1.5rem;background:rgba(250,247,242,0.98);border-bottom:1px solid var(--border);padding:.5rem 0;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  .nav-links.open{display:flex}
+  .nav-links li a{display:block;padding:.75rem 1.5rem;font-size:.92rem}
+  .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle.open span:nth-child(2){opacity:0}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+}
 
 /* ARTICLES */
 .article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem 1.5rem}
@@ -66,7 +77,10 @@ footer{text-align:center;padding:5rem 2rem;font-size:.8rem;color:var(--warm-gray
 <nav>
   <div class="nav-inner">
     <div class="nav-logo">傅鴻儒 Brook Fu</div>
-    <ul class="nav-links">
+    <button class="nav-toggle" id="nav-toggle" aria-label="選單">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
       <li><a href="#articles">文章作品集</a></li>
       <li><a href="#podcast">廣播錄音</a></li>
       <li><a href="#videos">影音作品</a></li>
@@ -189,14 +203,12 @@ footer{text-align:center;padding:5rem 2rem;font-size:.8rem;color:var(--warm-gray
     <a href="https://www.youtube.com/watch?v=zVY0ccZ3udo" target="_blank" class="video-card video-card-long">
       <img src="https://img.youtube.com/vi/zVY0ccZ3udo/hqdefault.jpg" alt="專題紀錄片一">
       <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
-      <div class="video-label">白沙屯媽祖進香的真相，保證顛覆三觀#粉紅超跑 【靠左盃走｜EP32Video Podcast】
-</div>
+      <div class="video-label">專題紀錄片一</div>
     </a>
-    <a href="https://www.youtube.com/watch?v=zHsssXUUnsI&t" target="_blank" class="video-card video-card-long">
+    <a href="https://www.youtube.com/watch?v=zHsssXUUnsI&t=69" target="_blank" class="video-card video-card-long">
       <img src="https://img.youtube.com/vi/zHsssXUUnsI/hqdefault.jpg" alt="專題紀錄片二">
       <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
-      <div class="video-label">我為什麼關注龍樹諒2025預言？日本預言不只311，多災之島台灣人該如何面對？#竜樹諒【工頭堅。半工伴讀｜EP14 Video Podcast】
-</div>
+      <div class="video-label">專題紀錄片二</div>
     </a>
   </div>
   <div class="video-section-title">短影音 / Shorts</div>
@@ -204,18 +216,17 @@ footer{text-align:center;padding:5rem 2rem;font-size:.8rem;color:var(--warm-gray
     <a href="https://www.youtube.com/shorts/TkVi-hoFr_Q" target="_blank" class="video-card video-card-short">
       <img src="https://img.youtube.com/vi/TkVi-hoFr_Q/hqdefault.jpg" alt="Shorts 一">
       <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
-      <div class="video-label">原住民＝炎黃子孫？#魏晉南北朝史 #原住民 #炎黃子孫 #NTUOCW
-</div>
+      <div class="video-label">Shorts 一</div>
     </a>
-    <a href="https://www.youtube.com/shorts/j8tJ0AC0VWQ" target="_blank" class="video-card video-card-short">
-      <img src="https://img.youtube.com/vi/j8tJ0AC0VWQ/hqdefault.jpg" alt="Shorts 二">
+    <a href="https://www.youtube.com/watch?v=zHsssXUUnsI" target="_blank" class="video-card video-card-short">
+      <img src="https://img.youtube.com/vi/zHsssXUUnsI/hqdefault.jpg" alt="Shorts 二">
       <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
-      <div class="video-label">會打字就能用AI做圖！點擊上方影片連結取得YT線上課程優惠！#youtubeshorts #youtube #ai #aitools #線上學習 #youtubecourse</div>
+      <div class="video-label">Shorts 二</div>
     </a>
     <a href="https://www.youtube.com/shorts/vbGppD55ydg" target="_blank" class="video-card video-card-short">
       <img src="https://img.youtube.com/vi/vbGppD55ydg/hqdefault.jpg" alt="Shorts 三">
       <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
-      <div class="video-label">面對學長姐質疑，我依然選擇阻止悲劇持續發生！【靠左盃走｜Video Podcast】</div>
+      <div class="video-label">Shorts 三</div>
     </a>
   </div>
 </div>
@@ -225,6 +236,18 @@ footer{text-align:center;padding:5rem 2rem;font-size:.8rem;color:var(--warm-gray
 </footer>
 
 <script>
+const toggle = document.getElementById('nav-toggle');
+const links = document.getElementById('nav-links');
+toggle.addEventListener('click', () => {
+  toggle.classList.toggle('open');
+  links.classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    links.classList.remove('open');
+  });
+});
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
     const el=document.getElementById(a.getAttribute('href').slice(1));
