@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#FAF7F2;--rust:#C0533A;--charcoal:#2A2520;--warm-gray:#6B6259;--border:#E4DDD5;
+}
+body{background:var(--cream);color:var(--charcoal);font-family:'Noto Sans TC',sans-serif;font-weight:300;line-height:1.7}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:4rem 2rem}
+.section-label{font-size:.72rem;letter-spacing:.22em;color:var(--rust);text-transform:uppercase;margin-bottom:2rem;border-left:3px solid var(--rust);padding-left:10px}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(250,247,242,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 2rem}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:56px}
+.nav-logo{font-family:'Noto Serif TC',serif;font-weight:700;font-size:1.1rem}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:.85rem;color:var(--warm-gray);transition:color .2s}
+.nav-links a:hover{color:var(--rust)}
+
+/* ARTICLES */
+.article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem 1.5rem}
+@media (max-width: 768px) { .article-grid{grid-template-columns:1fr 1fr} }
+@media (max-width: 480px) { .article-grid{grid-template-columns:1fr} }
+.article-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.05);transition:all .3s ease;display:block}
+.article-card:hover{transform:translateY(-5px);box-shadow:0 12px 24px rgba(0,0,0,0.1)}
+.ac-img-box{width:100%;aspect-ratio:1.6/1;overflow:hidden;background:#f0f0f0}
+.ac-img-box img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.article-card:hover .ac-img-box img{transform:scale(1.08)}
+.ac-body{padding:1.2rem}
+.ac-title{font-size:1rem;font-weight:500;color:var(--charcoal);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:3rem}
+
+/* PODCAST */
+.podcast-list{display:flex;flex-direction:column;gap:1.25rem}
+.podcast-item{border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#fff}
+.pod-header{padding:1rem 1.4rem;display:flex;align-items:center;gap:1.2rem;border-bottom:1px solid var(--border)}
+.pod-num{font-family:'Noto Serif TC',serif;font-size:1.3rem;font-weight:700;color:var(--rust);opacity:.35;min-width:2rem}
+.pod-info{flex:1}
+.pod-title{font-size:.9rem;font-weight:500;color:var(--charcoal);line-height:1.5}
+.podcast-item iframe{display:block}
+
+.video-section-title { font-size: 1rem; margin: 2rem 0 1rem; font-weight: 500; color: var(--warm-gray); letter-spacing:.1em; text-transform:uppercase; font-size:.75rem; }
+.video-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.video-grid-shorts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media (max-width: 768px) { .video-grid, .video-grid-shorts{grid-template-columns:1fr} }
+.video-card{display:block;border-radius:12px;overflow:hidden;position:relative;background:#111;transition:transform .2s,box-shadow .2s}
+.video-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.15)}
+.video-card-long{aspect-ratio:16/9}
+.video-card-short{aspect-ratio:9/16}
+.video-card img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .2s}
+.video-card:hover img{opacity:.85}
+.video-overlay{position:absolute;inset:0;background:rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center}
+.video-play{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;transition:background .2s}
+.video-card:hover .video-play{background:rgba(255,255,255,.4)}
+.vplay-tri{width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:18px solid #fff;margin-left:4px}
+.video-label{position:absolute;bottom:0;left:0;right:0;padding:.7rem 1rem;background:linear-gradient(transparent,rgba(0,0,0,.6));color:#fff;font-size:.82rem;font-weight:500}
+
+footer{text-align:center;padding:5rem 2rem;font-size:.8rem;color:var(--warm-gray);border-top:1px solid var(--border);margin-top:4rem}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">傅鴻儒 Brook Fu</div>
+    <ul class="nav-links">
+      <li><a href="#articles">文章作品集</a></li>
+      <li><a href="#podcast">廣播錄音</a></li>
+      <li><a href="#videos">影音作品</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap" id="articles">
+  <div class="section-label">Selected Articles</div>
+  <div class="article-grid">
+    
+    <a href="https://edh.tw/articles/72wq7ID" target="_blank" class="article-card">
+      <div class="ac-img-box">
+        <img src="https://edh.tw/_ipx/w_1024/https://media-edh-cdn.h2u.io/image/article/800X418/cIpbxGt3Cb9KgctqxfXKoL6wGjyzq55Kq5EeFtfo.jpg" alt="" referrerpolicy="no-referrer">
+      </div>
+      <div class="ac-body">
+        <div class="ac-title">打敗紅蘿蔔！營養師推「維生素A蔬菜王者」護眼抗過敏菜單大公開</div>
+      </div>
+    </a>
+
+    <a href="https://edh.tw/articles/1GakOgT" target="_blank" class="article-card">
+      <div class="ac-img-box">
+        <img src="https://edh.tw/_ipx/w_1024/https://media-edh-cdn.h2u.io/image/article/800X418/ykw0Z2IvDfc2AXuJenfPeHMpeRvz6hQDfvjFiUs1.jpg" alt="" referrerpolicy="no-referrer">
+      </div>
+      <div class="ac-body">
+        <div class="ac-title">給錢也不吃！治病20年心臟醫點名「這9樣危險食物」他絕不碰</div>
+      </div>
+    </a>
+
+    <a href="https://edh.tw/articles/NLk7Hmu" target="_blank" class="article-card">
+      <div class="ac-img-box">
+        <img src="https://edh.tw/_ipx/w_1024/https://media-edh-cdn.h2u.io/image/article/800X418/spd22Y47TgBDiz38iJijMKE4c8Tb4r2ppyQuEIuC.jpg" alt="" referrerpolicy="no-referrer">
+      </div>
+      <div class="ac-body">
+        <div class="ac-title">老人斑是體內發炎的照妖鏡！醫實測回春2招「靠吃的」僅一年就讓斑不見</div>
+      </div>
+    </a>
+
+    <a href="https://edh.tw/articles/Jpb3zng" target="_blank" class="article-card">
+      <div class="ac-img-box">
+        <img src="https://edh.tw/_ipx/w_1024/https://media-edh-cdn.h2u.io/image/article/800X418/DaErYPFS0rGeRtdkwx5nymNa4EIW50W7eV3qarC6.jpg" alt="" referrerpolicy="no-referrer">
+      </div>
+      <div class="ac-body">
+        <div class="ac-title">泡麵這樣吃，腎臟求救中！名醫示警「10大傷腎吃法」腎臟減壽好幾年</div>
+      </div>
+    </a>
+
+    <a href="https://edh.tw/articles/M0pIVfX" target="_blank" class="article-card">
+      <div class="ac-img-box">
+        <img src="https://edh.tw/_ipx/w_1024/https://media-edh-cdn.h2u.io/image/article/800X418/XOMcGLVax9ZCCo4NyImicvXuPRwmL02F4sgLDXln.jpg" alt="" referrerpolicy="no-referrer">
+      </div>
+      <div class="ac-body">
+        <div class="ac-title">想養生卻養出病？50歲男腎臟老如80歲，醫嘆吃菜加這味太傷</div>
+      </div>
+    </a>
+
+    <a href="https://edh.tw/articles/chwgExu" target="_blank" class="article-card">
+      <div class="ac-img-box">
+        <img src="https://img.edh.tw/zz/main/202507/639613317800000006ae_b.jpg" alt="" referrerpolicy="no-referrer">
+      </div>
+      <div class="ac-body">
+        <div class="ac-title">60歲男早餐必喝「一款湯」竟得大腸癌！4種湯小心喝越多越危險</div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<hr style="border:none; border-top:1px solid #E4DDD5;">
+
+<div class="wrap" id="podcast">
+<div class="section-label">Podcast / Audio</div>
+  <div class="podcast-list">
+    
+    <div class="podcast-item">
+      <div class="pod-header">
+        <div class="pod-num">01</div>
+        <div class="pod-info">
+          <div class="pod-title">智慧化商用wifi與AI ft. 國立陽明交通大學 李奇育教授《新科技大未來》</div>
+        </div>
+      </div>
+      <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/brook-64171284/11-01&secret_token=s-hZsyE6zLaAI&color=%23C0533A&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
+      </iframe>
+    </div>
+
+    <div class="podcast-item">
+      <div class="pod-header">
+        <div class="pod-num">02</div>
+        <div class="pod-info">
+          <div class="pod-title">智慧城市 ft. 台北市資訊局長 趙式隆《科技永續普拉斯》</div>
+        </div>
+      </div>
+      <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/brook-64171284/20250302a1&secret_token=s-CBbT4cMUzUB&color=%23C0533A&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
+      </iframe>
+    </div>
+
+    <div class="podcast-item">
+      <div class="pod-header">
+        <div class="pod-num">03</div>
+        <div class="pod-info">
+          <div class="pod-title">你怎麼還在這？ ft.主持人彭增佑 《校園DJshow》｜國立教育廣播電臺</div>
+        </div>
+      </div>
+      <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/brook-64171284/20240108-2232-dj-show-1&secret_token=s-PyQxEpdesX2&color=%23C0533A&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
+      </iframe>
+    </div>
+
+  </div>
+</div>
+
+<hr style="border:none; border-top:1px solid #E4DDD5;">
+
+<div class="wrap" id="videos">
+  <div class="section-label">Video Works</div>
+  <div class="video-section-title">長影音精選</div>
+  <div class="video-grid">
+    <a href="https://www.youtube.com/watch?v=zVY0ccZ3udo" target="_blank" class="video-card video-card-long">
+      <img src="https://img.youtube.com/vi/zVY0ccZ3udo/hqdefault.jpg" alt="專題紀錄片一">
+      <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
+      <div class="video-label">白沙屯媽祖進香的真相，保證顛覆三觀#粉紅超跑 【靠左盃走｜EP32Video Podcast】
+</div>
+    </a>
+    <a href="https://www.youtube.com/watch?v=zHsssXUUnsI&t" target="_blank" class="video-card video-card-long">
+      <img src="https://img.youtube.com/vi/zHsssXUUnsI/hqdefault.jpg" alt="專題紀錄片二">
+      <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
+      <div class="video-label">我為什麼關注龍樹諒2025預言？日本預言不只311，多災之島台灣人該如何面對？#竜樹諒【工頭堅。半工伴讀｜EP14 Video Podcast】
+</div>
+    </a>
+  </div>
+  <div class="video-section-title">短影音 / Shorts</div>
+  <div class="video-grid-shorts">
+    <a href="https://www.youtube.com/shorts/TkVi-hoFr_Q" target="_blank" class="video-card video-card-short">
+      <img src="https://img.youtube.com/vi/TkVi-hoFr_Q/hqdefault.jpg" alt="Shorts 一">
+      <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
+      <div class="video-label">原住民＝炎黃子孫？#魏晉南北朝史 #原住民 #炎黃子孫 #NTUOCW
+</div>
+    </a>
+    <a href="https://www.youtube.com/shorts/j8tJ0AC0VWQ" target="_blank" class="video-card video-card-short">
+      <img src="https://img.youtube.com/vi/j8tJ0AC0VWQ/hqdefault.jpg" alt="Shorts 二">
+      <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
+      <div class="video-label">會打字就能用AI做圖！點擊上方影片連結取得YT線上課程優惠！#youtubeshorts #youtube #ai #aitools #線上學習 #youtubecourse</div>
+    </a>
+    <a href="https://www.youtube.com/shorts/vbGppD55ydg" target="_blank" class="video-card video-card-short">
+      <img src="https://img.youtube.com/vi/vbGppD55ydg/hqdefault.jpg" alt="Shorts 三">
+      <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
+      <div class="video-label">面對學長姐質疑，我依然選擇阻止悲劇持續發生！【靠左盃走｜Video Podcast】</div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 傅鴻儒 Brook Fu 作品集. All Rights Reserved.</p>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const el=document.getElementById(a.getAttribute('href').slice(1));
+    if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
+  });
+});
+</script>
+</body>
+</html>
