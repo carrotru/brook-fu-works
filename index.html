@@ -9,6 +9,7 @@
 :root{
   --cream:#FAF7F2;--rust:#C0533A;--charcoal:#2A2520;--warm-gray:#6B6259;--border:#E4DDD5;
 }
+html{scroll-behavior: smooth;} /* 由 CSS 統一控管平滑滾動，體驗更佳 */
 body{background:var(--cream);color:var(--charcoal);font-family:'Noto Sans TC',sans-serif;font-weight:300;line-height:1.7}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1100px;margin:0 auto;padding:4rem 2rem}
@@ -20,8 +21,9 @@ nav{position:sticky;top:0;z-index:100;background:rgba(250,247,242,0.95);backdrop
 .nav-links{display:flex;gap:1.5rem;list-style:none}
 .nav-links a{font-size:.82rem;color:var(--warm-gray);transition:color .2s;white-space:nowrap}
 .nav-links a:hover{color:var(--rust)}
-.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px}
+.nav-toggle{background:none;border:none;cursor:pointer;padding:4px;flex-direction:column;gap:5px;display:none}
 .nav-toggle span{display:block;width:22px;height:2px;background:var(--charcoal);border-radius:2px;transition:all .25s}
+
 @media(max-width:600px){
   .nav-toggle{display:flex}
   .nav-links{display:none;flex-direction:column;gap:0;position:absolute;top:52px;left:-1.5rem;right:-1.5rem;background:rgba(250,247,242,0.98);border-bottom:1px solid var(--border);padding:.5rem 0;box-shadow:0 4px 12px rgba(0,0,0,.08)}
@@ -30,6 +32,73 @@ nav{position:sticky;top:0;z-index:100;background:rgba(250,247,242,0.95);backdrop
   .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
   .nav-toggle.open span:nth-child(2){opacity:0}
   .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+}
+
+/* PROFILE SECTION */
+.profile-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+.profile-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 12px; /* 這裡預設是圓角正方形。如果想要圓形照片，可以改成 50% */
+  object-fit: cover;
+  background: #f0f0f0;
+  flex-shrink: 0;
+}
+.profile-content {
+  flex: 1;
+}
+.profile-name {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-bottom: 0.8rem;
+}
+.profile-text {
+  font-size: .95rem;
+  color: var(--warm-gray);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+/* 新增的社群聯絡按鈕排版 */
+.profile-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  font-size: 0.85rem;
+}
+.contact-link {
+  color: var(--warm-gray);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color 0.2s;
+}
+.contact-link:hover {
+  color: var(--rust);
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .profile-box {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  .profile-contacts {
+    justify-content: center;
+  }
 }
 
 /* ARTICLES */
@@ -69,7 +138,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(250,247,242,0.95);backdrop
 .vplay-tri{width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:18px solid #fff;margin-left:4px}
 .video-label{position:absolute;bottom:0;left:0;right:0;padding:.7rem 1rem;background:linear-gradient(transparent,rgba(0,0,0,.6));color:#fff;font-size:.82rem;font-weight:500}
 
-footer{text-align:center;padding:5rem 2rem;font-size:.8rem;color:var(--warm-gray);border-top:1px solid var(--border);margin-top:4rem}
+footer{text-align:center;padding:4rem 2rem;font-size:.8rem;color:var(--warm-gray);border-top:1px solid var(--border);margin-top:4rem}
+.footer-contacts{margin-top:0.8rem;display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap}
 </style>
 </head>
 <body>
@@ -81,71 +151,66 @@ footer{text-align:center;padding:5rem 2rem;font-size:.8rem;color:var(--warm-gray
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="nav-links">
-      <li><a href="#articles">文章作品集</a></li>
-      <li><a href="#podcast">廣播錄音</a></li>
       <li><a href="#videos">影音作品</a></li>
+      <li><a href="#podcast">廣播錄音</a></li>
+      <li><a href="#articles">文章作品集</a></li>
     </ul>
   </div>
 </nav>
 
-<div class="wrap" id="articles">
-  <div class="section-label">Selected Articles</div>
-  <div class="article-grid">
-    
-    <a href="https://edh.tw/articles/72wq7ID" target="_blank" class="article-card">
-      <div class="ac-img-box">
-        <img src="https://edh.tw/_ipx/w_1024/https://media-edh-cdn.h2u.io/image/article/800X418/cIpbxGt3Cb9KgctqxfXKoL6wGjyzq55Kq5EeFtfo.jpg" alt="" referrerpolicy="no-referrer">
+<div class="wrap" id="profile" style="padding-bottom: 0;">
+  <div class="section-label">About Me</div>
+  <div class="profile-box">
+    <img src="https://lh3.googleusercontent.com/d/1iLhNNluZf4Z-YsT3uSvNGXyN0NKbfVIR" alt="傅鴻儒" class="profile-img">
+    <div class="profile-content">
+      <h1 class="profile-name">傅鴻儒 Brook Fu</h1>
+      <p class="profile-text">
+        嗨！我是鴻儒！畢業於世新新聞，目前正在陽明交大公衛研究所修煉中！我很喜歡將高門檻、看起來生硬的議題，轉譯成大眾都能輕鬆讀懂的內容。<br><br>
+        我過去曾經擔任電台主持、文字記者與影音剪輯，累積了許多深度採訪與專題撰寫的實戰經驗。現在，我正努力把公共衛生領域的嚴謹嚴肅，跟充滿趣味的內容創作結合在一起！未來期待能讓更多重要的議題被看見、被理解。
+      <div class="profile-contacts">
+        <a href="https://www.facebook.com/fu.hong.ru.808364" target="_blank" class="contact-link">🌐 Facebook</a>
+        <a href="https://www.instagram.com/carrots_ru/" target="_blank" class="contact-link">📸 Instagram</a>
+        <a href="mailto:rurr901121@gmail.com" class="contact-link">📧 rurr901121@gmail.com</a>
+        <a href="tel:0929901121" class="contact-link">📞 0929901121</a>
       </div>
-      <div class="ac-body">
-        <div class="ac-title">打敗紅蘿蔔！營養師推「維生素A蔬菜王者」護眼抗過敏菜單大公開</div>
-      </div>
-    </a>
+    </div>
+  </div>
+</div>
 
-    <a href="https://edh.tw/articles/1GakOgT" target="_blank" class="article-card">
-      <div class="ac-img-box">
-        <img src="https://edh.tw/_ipx/w_1024/https://media-edh-cdn.h2u.io/image/article/800X418/ykw0Z2IvDfc2AXuJenfPeHMpeRvz6hQDfvjFiUs1.jpg" alt="" referrerpolicy="no-referrer">
-      </div>
-      <div class="ac-body">
-        <div class="ac-title">給錢也不吃！治病20年心臟醫點名「這9樣危險食物」他絕不碰</div>
-      </div>
-    </a>
+<hr style="border:none; border-top:1px solid #E4DDD5;">
 
-    <a href="https://edh.tw/articles/NLk7Hmu" target="_blank" class="article-card">
-      <div class="ac-img-box">
-        <img src="https://edh.tw/_ipx/w_1024/https://media-edh-cdn.h2u.io/image/article/800X418/spd22Y47TgBDiz38iJijMKE4c8Tb4r2ppyQuEIuC.jpg" alt="" referrerpolicy="no-referrer">
-      </div>
-      <div class="ac-body">
-        <div class="ac-title">老人斑是體內發炎的照妖鏡！醫實測回春2招「靠吃的」僅一年就讓斑不見</div>
-      </div>
+<div class="wrap" id="videos">
+  <div class="section-label">Video Works</div>
+  <div class="video-section-title">長影音作品</div>
+  <div class="video-grid">
+    <a href="https://www.youtube.com/watch?v=zVY0ccZ3udo" target="_blank" class="video-card video-card-long">
+      <img src="https://img.youtube.com/vi/zVY0ccZ3udo/maxresdefault.jpg" alt="專題紀錄片一">
+      <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
+      <div class="video-label">白沙屯媽祖進香的真相，保證顛覆三觀#粉紅超跑 【靠左盃走｜EP32Video Podcast】</div>
     </a>
-
-    <a href="https://edh.tw/articles/Jpb3zng" target="_blank" class="article-card">
-      <div class="ac-img-box">
-        <img src="https://edh.tw/_ipx/w_1024/https://media-edh-cdn.h2u.io/image/article/800X418/DaErYPFS0rGeRtdkwx5nymNa4EIW50W7eV3qarC6.jpg" alt="" referrerpolicy="no-referrer">
-      </div>
-      <div class="ac-body">
-        <div class="ac-title">泡麵這樣吃，腎臟求救中！名醫示警「10大傷腎吃法」腎臟減壽好幾年</div>
-      </div>
+    <a href="https://www.youtube.com/watch?v=zHsssXUUnsI&t=69" target="_blank" class="video-card video-card-long">
+      <img src="https://img.youtube.com/vi/zHsssXUUnsI/maxresdefault.jpg" alt="專題紀錄片二">
+      <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
+      <div class="video-label">我為什麼關注龍樹諒2025預言？日本預言不只311，多災之島台灣人該如何面對？#竜樹諒【工頭堅。半工伴讀｜EP14 Video Podcast】</div>
     </a>
-
-    <a href="https://edh.tw/articles/M0pIVfX" target="_blank" class="article-card">
-      <div class="ac-img-box">
-        <img src="https://edh.tw/_ipx/w_1024/https://media-edh-cdn.h2u.io/image/article/800X418/XOMcGLVax9ZCCo4NyImicvXuPRwmL02F4sgLDXln.jpg" alt="" referrerpolicy="no-referrer">
-      </div>
-      <div class="ac-body">
-        <div class="ac-title">想養生卻養出病？50歲男腎臟老如80歲，醫嘆吃菜加這味太傷</div>
-      </div>
+  </div>
+  <div class="video-section-title">短影音作品 / Shorts</div>
+  <div class="video-grid-shorts">
+    <a href="https://www.youtube.com/shorts/KKH0wzDqRzA" target="_blank" class="video-card video-card-short">
+      <img src="https://img.youtube.com/vi/KKH0wzDqRzA/maxresdefault.jpg" alt="Shorts 一">
+      <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
+      <div class="video-label">新創出海！為何容易誤觸常設機構的稅務陷阱？ Ft. KPMG 黃海寧會計師 │ 全新一週 EP219</div>
     </a>
-
-    <a href="https://edh.tw/articles/chwgExu" target="_blank" class="article-card">
-      <div class="ac-img-box">
-        <img src="https://img.edh.tw/zz/main/202507/639613317800000006ae_b.jpg" alt="" referrerpolicy="no-referrer">
-      </div>
-      <div class="ac-body">
-        <div class="ac-title">60歲男早餐必喝「一款湯」竟得大腸癌！4種湯小心喝越多越危險</div>
-      </div>
+    <a href="https://www.youtube.com/shorts/TkVi-hoFr_Q" target="_blank" class="video-card video-card-short">
+      <img src="https://img.youtube.com/vi/TkVi-hoFr_Q/maxresdefault.jpg" alt="Shorts 二" style="object-position: center;">
+      <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
+      <div class="video-label">原住民＝炎黃子孫？ | 台大開放式課程歷史學系 甘懷真</div>
     </a>
-
+    <a href="https://www.youtube.com/shorts/vbGppD55ydg" target="_blank" class="video-card video-card-short">
+      <img src="https://img.youtube.com/vi/vbGppD55ydg/maxresdefault.jpg" alt="Shorts 三">
+      <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
+      <div class="video-label">面對學長姐質疑，我依然選擇阻止悲劇持續发生！【靠左盃走｜Video Podcast】</div>
+    </a>
   </div>
 </div>
 
@@ -196,63 +261,90 @@ footer{text-align:center;padding:5rem 2rem;font-size:.8rem;color:var(--warm-gray
 
 <hr style="border:none; border-top:1px solid #E4DDD5;">
 
-<div class="wrap" id="videos">
-  <div class="section-label">Video Works</div>
-  <div class="video-section-title">長影音精選</div>
-  <div class="video-grid">
-    <a href="https://www.youtube.com/watch?v=zVY0ccZ3udo" target="_blank" class="video-card video-card-long">
-      <img src="https://img.youtube.com/vi/zVY0ccZ3udo/hqdefault.jpg" alt="專題紀錄片一">
-      <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
-      <div class="video-label">專題紀錄片一</div>
+<div class="wrap" id="articles">
+  <div class="section-label">Selected Articles</div>
+  <div class="article-grid">
+    
+    <a href="https://edh.tw/articles/72wq7ID" target="_blank" class="article-card">
+      <div class="ac-img-box">
+        <img src="https://edh.tw/_ipx/w_1024/https://media-edh-cdn.h2u.io/image/article/800X418/cIpbxGt3Cb9KgctqxfXKoL6wGjyzq55Kq5EeFtfo.jpg" alt="打敗紅蘿蔔！營養師推「維生素A蔬菜王者」" referrerpolicy="no-referrer">
+      </div>
+      <div class="ac-body">
+        <div class="ac-title">打敗紅蘿蔔！營養師推「維生素A蔬菜王者」護眼抗過敏菜單大公開</div>
+      </div>
     </a>
-    <a href="https://www.youtube.com/watch?v=zHsssXUUnsI&t=69" target="_blank" class="video-card video-card-long">
-      <img src="https://img.youtube.com/vi/zHsssXUUnsI/hqdefault.jpg" alt="專題紀錄片二">
-      <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
-      <div class="video-label">專題紀錄片二</div>
+
+    <a href="https://edh.tw/articles/1GakOgT" target="_blank" class="article-card">
+      <div class="ac-img-box">
+        <img src="https://edh.tw/_ipx/w_1024/https://media-edh-cdn.h2u.io/image/article/800X418/ykw0Z2IvDfc2AXuJenfPeHMpeRvz6hQDfvjFiUs1.jpg" alt="治病20年心臟醫點名「這9樣危險食物」" referrerpolicy="no-referrer">
+      </div>
+      <div class="ac-body">
+        <div class="ac-title">給錢也不吃！治病20年心臟醫點名「這9樣危險食物」他絕不碰</div>
+      </div>
     </a>
-  </div>
-  <div class="video-section-title">短影音 / Shorts</div>
-  <div class="video-grid-shorts">
-    <a href="https://www.youtube.com/shorts/TkVi-hoFr_Q" target="_blank" class="video-card video-card-short">
-      <img src="https://img.youtube.com/vi/TkVi-hoFr_Q/hqdefault.jpg" alt="Shorts 一">
-      <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
-      <div class="video-label">Shorts 一</div>
+
+    <a href="https://edh.tw/articles/NLk7Hmu" target="_blank" class="article-card">
+      <div class="ac-img-box">
+        <img src="https://edh.tw/_ipx/w_1024/https://media-edh-cdn.h2u.io/image/article/800X418/spd22Y47TgBDiz38iJijMKE4c8Tb4r2ppyQuEIuC.jpg" alt="老人斑是體內發炎的照妖鏡" referrerpolicy="no-referrer">
+      </div>
+      <div class="ac-body">
+        <div class="ac-title">老人斑是體內發炎的照妖鏡！醫實測回春2招「靠吃的」僅一年就讓斑不見</div>
+      </div>
     </a>
-    <a href="https://www.youtube.com/watch?v=zHsssXUUnsI" target="_blank" class="video-card video-card-short">
-      <img src="https://img.youtube.com/vi/zHsssXUUnsI/hqdefault.jpg" alt="Shorts 二">
-      <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
-      <div class="video-label">Shorts 二</div>
+
+    <a href="https://edh.tw/articles/Jpb3zng" target="_blank" class="article-card">
+      <div class="ac-img-box">
+        <img src="https://edh.tw/_ipx/w_1024/https://media-edh-cdn.h2u.io/image/article/800X418/DaErYPFS0rGeRtdkwx5nymNa4EIW50W7eV3qarC6.jpg" alt="泡麵這樣吃，腎臟求救中" referrerpolicy="no-referrer">
+      </div>
+      <div class="ac-body">
+        <div class="ac-title">泡麵這樣吃，腎臟求救中！名醫示警「10大傷腎吃法」腎臟減壽好幾年</div>
+      </div>
     </a>
-    <a href="https://www.youtube.com/shorts/vbGppD55ydg" target="_blank" class="video-card video-card-short">
-      <img src="https://img.youtube.com/vi/vbGppD55ydg/hqdefault.jpg" alt="Shorts 三">
-      <div class="video-overlay"><div class="video-play"><div class="vplay-tri"></div></div></div>
-      <div class="video-label">Shorts 三</div>
+
+    <a href="https://edh.tw/articles/M0pIVfX" target="_blank" class="article-card">
+      <div class="ac-img-box">
+        <img src="https://edh.tw/_ipx/w_1024/https://media-edh-cdn.h2u.io/image/article/800X418/XOMcGLVax9ZCCo4NyImicvXuPRwmL02F4sgLDXln.jpg" alt="想養生卻養出病？50歲男腎臟老如80歲" referrerpolicy="no-referrer">
+      </div>
+      <div class="ac-body">
+        <div class="ac-title">想養生卻養出病？50歲男腎臟老如80歲，醫嘆吃菜加這味太傷</div>
+      </div>
     </a>
+
+    <a href="https://edh.tw/articles/chwgExu" target="_blank" class="article-card">
+      <div class="ac-img-box">
+        <img src="https://img.edh.tw/zz/main/202507/639613317800000006ae_b.jpg" alt="60歲男早餐必喝「一款湯」竟得大腸癌" referrerpolicy="no-referrer">
+      </div>
+      <div class="ac-body">
+        <div class="ac-title">60歲男早餐必喝「一款湯」竟得大腸癌！4種湯小心喝越來越危險</div>
+      </div>
+    </a>
+
   </div>
 </div>
 
-<footer>
-  <p>&copy; 2025 傅鴻儒 Brook Fu 作品集.</p>
-</footer>
 
 <script>
 const toggle = document.getElementById('nav-toggle');
 const links = document.getElementById('nav-links');
-toggle.addEventListener('click', () => {
+
+toggle.addEventListener('click', (e) => {
+  e.stopPropagation();
   toggle.classList.toggle('open');
   links.classList.toggle('open');
 });
+
+// 點擊連結後，先平滑收起選單，再讓 CSS 原生的 scroll-behavior 處理平滑滾動
 document.querySelectorAll('.nav-links a').forEach(a => {
   a.addEventListener('click', () => {
     toggle.classList.remove('open');
     links.classList.remove('open');
   });
 });
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const el=document.getElementById(a.getAttribute('href').slice(1));
-    if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
-  });
+
+// 點擊空白處自動收起手機版選單
+document.addEventListener('click', () => {
+  toggle.classList.remove('open');
+  links.classList.remove('open');
 });
 </script>
 </body>
